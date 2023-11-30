@@ -1,0 +1,126 @@
+% 03 Unipolar NRZ, Uniolar RZ, Polar RZ
+
+
+n=[1,0,1,0,1]; % Number of binary data inputs
+for b = 1:length(n)
+if n(b)==1;
+a(b)=3;
+else
+a(b)=0;
+end
+end
+i=1; % Index value is start from 1 in MATLAB. So variable i is used to index the input(n)
+t=0:0.01:length(n); % Time axis begin from 0 to length of n (5)
+for j=1:length(t) % j=1 means it indicates the first value of t
+if t(j)<=i;
+y(j)=a(i);
+else
+y(j)=a(i);
+i=i+1;
+end
+end
+% plotting
+plot(t,y,'r')
+
+
+
+% Unipolar RZ
+n = [1, 0, 1, 0, 1];
+a = zeros(1, 2*length(n));
+i = 1;
+
+for b = 1:length(n)
+    if n(b) == 1
+        a(2*b-1) = 1; 
+    end
+end
+
+t = 0:0.01:(2*length(n) - 1);
+
+y = zeros(size(t));
+
+for j = 1:length(t)
+    if t(j) <= i
+        y(j) = a(i);
+    else
+        y(j) = 0;
+        i = i + 1;
+    end
+end
+
+
+plot(t, y, 'r');
+title('RZ Unipolar Encoding');
+xlabel('Time');
+
+
+% Polar RZ
+n = [1, 0, 1, 0, 1];
+a = zeros(1, 2*length(n));
+i = 1;
+
+for b = 1:length(n)
+    if n(b) == 1
+        a(2*b-1) = 1; 
+    else
+        a(2*b) = -1; 
+    end
+end
+
+
+t = 0:0.01:(2*length(n) - 1);
+
+
+y = zeros(size(t));
+
+
+for j = 1:length(t)
+    if t(j) <= i
+        y(j) = a(i);
+    else
+        y(j) = 0;
+        i = i + 1;
+    end
+end
+
+
+plot(t, y, 'r');
+title('RZ Polar Encoding');
+xlabel('Time');
+ylabel('Amplitude');
+grid on;
+
+
+% Polar NRZ
+n = [1, 0, 1, 0, 1];
+a = zeros(1, length(n));
+i = 1;
+
+
+for b = 1:length(n)
+    if n(b) == 1
+        a(b) = 1; 
+    else
+        a(b) = -1; 
+    end
+end
+
+
+t = 0:0.01:(length(n) - 1);
+
+y = zeros(size(t));
+
+for j = 1:length(t)
+    if t(j) <= i
+        y(j) = a(i);
+    else
+        y(j) = a(i);
+        i = i + 1;
+    end
+end
+
+plot(t, y, 'r');
+title('NRZ Polar Encoding');
+xlabel('Time');
+ylabel('Amplitude');
+grid on

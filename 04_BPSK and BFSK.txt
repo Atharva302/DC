@@ -1,0 +1,63 @@
+% 04 BPSK and BFSK
+
+clc;
+clear all;
+fm=5; % frequency of signal needed for message signal
+t = 0:0.001:1; % Time axis( 0.001 is the step size)
+a=5; % Amplitude of a signal both the signal carrier and message
+m = a*square(2*pi*fm*t); % Representation of message bits[1,0,1,0,1,0,1,0,10]
+subplot(3,1,1); % 3 rows, 1 column first diagram
+plot(t,m); % plot the message signal
+grid on;
+title("Message Signal")
+xlabel("Time");
+ylabel("Amplitude");
+c= a*sin(2*pi*10*t); % representation of carrier signal
+subplot(3,1,2); % 3 rows, 1 column second diagram
+plot(t,c,'k-'); % plot the carrier signal
+xlabel('Time');
+ylabel('Amplitude');
+title('carrier signal');
+x=m.*c; % Calculation of BPSK signal
+subplot(3,1,3); % 3 rows, 1 column second diagram
+plot(t,x,'k-'); % plot the carrier signal
+xlabel('Time');
+ylabel('Amplitude');
+title('BPSK signal');
+
+
+
+% 04 BFSK
+
+
+clc;
+clear all;
+close all;
+am = 4;
+ac = 4;
+t = 0:0.001:2;
+fc = 15;
+fm = 2;
+kf = 1;
+m = am*square(2*pi*fm*t);
+subplot(3,1,1);
+plot(t,m);
+grid on;
+title("Message Signal")
+xlabel("Time");
+ylabel("Amplitude");
+c = ac*sin(2*pi*fc*t)
+subplot(3,1,2);
+plot(t,c);
+grid on;
+xlabel("Time");
+ylabel("Amplitude");
+title("Carrier Signal")
+beta = (kf*am)/fm;
+st = ac*cos(2*pi*fc*t - beta*cos(2*pi*fm*t));
+subplot(3,1,3)
+plot(t,st);
+grid on;
+xlabel("Time");
+ylabel("Amplitude");
+title(" Binary Frequency Shift Keying")
